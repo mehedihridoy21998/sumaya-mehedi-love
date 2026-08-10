@@ -3,6 +3,7 @@
    Premium Apple Love Website
 ===================================== */
 
+
 /* =================================
    PAGE LOADER
 ================================= */
@@ -21,24 +22,24 @@ window.addEventListener("load", function(){
 
                 loader.style.display = "none";
 
-            },1000);
+            }, 1000);
 
-        },1500);
+        }, 1500);
 
     }
 
 });
 
 
-/* ==========================
+/* =================================
    CURSOR GLOW
-========================== */
+================================= */
 
 const cursor = document.getElementById("cursorGlow");
 
 if(cursor){
 
-    document.addEventListener("mousemove",(e)=>{
+    document.addEventListener("mousemove", function(e){
 
         cursor.style.left = e.clientX + "px";
         cursor.style.top = e.clientY + "px";
@@ -46,61 +47,67 @@ if(cursor){
     });
 
 }
+
+
 /* =================================
    MEMORY POPUP
 ================================= */
 
 const memoryPopup = document.getElementById("memoryPopup");
-
 const memoryImage = document.getElementById("memoryImage");
-
 const memoryTitle = document.getElementById("memoryTitle");
-
 const memoryDate = document.getElementById("memoryDate");
-
 const memoryTime = document.getElementById("memoryTime");
-
 const memoryLocation = document.getElementById("memoryLocation");
-
 const memoryDesc = document.getElementById("memoryDesc");
-
 const closeMemory = document.getElementById("closeMemory");
 
-document.querySelectorAll(".timeline-item").forEach(item=>{
 
-    item.addEventListener("click",()=>{
+document.querySelectorAll(".timeline-item").forEach(function(item){
 
-        memoryImage.src = item.dataset.img;
+    item.addEventListener("click", function(){
 
-        memoryTitle.textContent = item.dataset.title;
+        if(memoryImage)
+            memoryImage.src = item.dataset.img;
 
-        memoryDate.textContent = "📅 " + item.dataset.date;
+        if(memoryTitle)
+            memoryTitle.textContent = item.dataset.title;
 
-        memoryTime.textContent = "🕒 " + item.dataset.time;
+        if(memoryDate)
+            memoryDate.textContent = "📅 " + item.dataset.date;
 
-        memoryLocation.textContent = "📍 " + item.dataset.location;
+        if(memoryTime)
+            memoryTime.textContent = "🕒 " + item.dataset.time;
 
-        memoryDesc.textContent = item.dataset.desc;
+        if(memoryLocation)
+            memoryLocation.textContent = "📍 " + item.dataset.location;
 
-        memoryPopup.style.display = "flex";
+        if(memoryDesc)
+            memoryDesc.textContent = item.dataset.desc;
+
+        if(memoryPopup)
+            memoryPopup.style.display = "flex";
 
     });
 
 });
 
+
 if(closeMemory){
 
-    closeMemory.addEventListener("click",()=>{
+    closeMemory.addEventListener("click", function(){
 
-        memoryPopup.style.display = "none";
+        if(memoryPopup)
+            memoryPopup.style.display = "none";
 
     });
 
 }
 
+
 if(memoryPopup){
 
-    memoryPopup.addEventListener("click",(e)=>{
+    memoryPopup.addEventListener("click", function(e){
 
         if(e.target === memoryPopup){
 
@@ -111,19 +118,21 @@ if(memoryPopup){
     });
 
 }
+
+
 /* =================================
    MUSIC PLAYER
 ================================= */
 
 const music = document.getElementById("bgMusic");
-
 const musicBtn = document.getElementById("musicBtn");
 
 let isPlaying = false;
 
+
 if(music && musicBtn){
 
-    musicBtn.addEventListener("click",()=>{
+    musicBtn.addEventListener("click", function(){
 
         if(isPlaying){
 
@@ -131,19 +140,28 @@ if(music && musicBtn){
 
             musicBtn.innerHTML = "🎵";
 
+            isPlaying = false;
+
         }else{
 
-            music.play();
+            music.play().then(function(){
 
-            musicBtn.innerHTML = "🔊";
+                musicBtn.innerHTML = "🔊";
+                isPlaying = true;
+
+            }).catch(function(error){
+
+                console.log("Music could not play:", error);
+
+            });
 
         }
-
-        isPlaying = !isPlaying;
 
     });
 
 }
+
+
 /* =================================
    CINEMATIC BACKGROUND
 ================================= */
@@ -154,105 +172,132 @@ const bg2 = document.getElementById("bg2");
 const backgrounds = [
 
     "images/bg1.JPG",
-
     "images/bg2.JPG",
-
     "images/bg3.jpg",
-
     "images/bg4.jpg"
 
 ];
-let currentBg = 0;
 
+let currentBg = 0;
 let activeLayer = 1;
 
-bg1.style.backgroundImage = `url(${backgrounds[0]})`;
 
-window.addEventListener("scroll",()=>{
+if(bg1 && bg2){
 
-    const section = Math.floor(window.scrollY / window.innerHeight);
+    bg1.style.backgroundImage =
+        `url(${backgrounds[0]})`;
 
-    const index = Math.min(section, backgrounds.length-1);
 
-    if(index === currentBg) return;
+    window.addEventListener("scroll", function(){
 
-    currentBg = index;
+        const section =
+            Math.floor(window.scrollY / window.innerHeight);
 
-    if(activeLayer === 1){
+        const index =
+            Math.min(
+                section,
+                backgrounds.length - 1
+            );
 
-        bg2.style.backgroundImage = `url(${backgrounds[index]})`;
+        if(index === currentBg)
+            return;
 
-        bg2.style.opacity = 1;
+        currentBg = index;
 
-        bg1.style.opacity = 0;
 
-        activeLayer = 2;
+        if(activeLayer === 1){
 
-    }else{
+            bg2.style.backgroundImage =
+                `url(${backgrounds[index]})`;
 
-        bg1.style.backgroundImage = `url(${backgrounds[index]})`;
+            bg2.style.opacity = "1";
+            bg1.style.opacity = "0";
 
-        bg1.style.opacity = 1;
+            activeLayer = 2;
 
-        bg2.style.opacity = 0;
+        }else{
 
-        activeLayer = 1;
+            bg1.style.backgroundImage =
+                `url(${backgrounds[index]})`;
 
-    }
+            bg1.style.opacity = "1";
+            bg2.style.opacity = "0";
 
-});
-/* =================================
-   GALLERY LIGHTBOX
-================================= */
-
-const galleryImages = document.querySelectorAll(".gallery-grid img");
-
-const lightbox = document.getElementById("lightbox");
-
-const lightboxImg = document.getElementById("lightboxImg");
-
-const closeLightbox = document.getElementById("closeLightbox");
-
-galleryImages.forEach(img=>{
-
-    img.addEventListener("click",()=>{
-
-        lightbox.style.display = "flex";
-
-        lightboxImg.src = img.src;
-
-    });
-
-});
-
-if(closeLightbox){
-
-    closeLightbox.addEventListener("click",()=>{
-
-        lightbox.style.display = "none";
-
-    });
-
-}
-
-if(lightbox){
-
-    lightbox.addEventListener("click",(e)=>{
-
-        if(e.target===lightbox){
-
-            lightbox.style.display="none";
+            activeLayer = 1;
 
         }
 
     });
 
 }
+
+
+/* =================================
+   GALLERY LIGHTBOX
+================================= */
+
+const galleryImages =
+    document.querySelectorAll(".gallery-grid img");
+
+const lightbox =
+    document.getElementById("lightbox");
+
+const lightboxImg =
+    document.getElementById("lightboxImg");
+
+const closeLightbox =
+    document.getElementById("closeLightbox");
+
+
+galleryImages.forEach(function(img){
+
+    img.addEventListener("click", function(){
+
+        if(lightbox)
+            lightbox.style.display = "flex";
+
+        if(lightboxImg)
+            lightboxImg.src = img.src;
+
+    });
+
+});
+
+
+if(closeLightbox){
+
+    closeLightbox.addEventListener("click", function(){
+
+        if(lightbox)
+            lightbox.style.display = "none";
+
+    });
+
+}
+
+
+if(lightbox){
+
+    lightbox.addEventListener("click", function(e){
+
+        if(e.target === lightbox){
+
+            lightbox.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
 /* =================================
    LOVE COUNTER
 ================================= */
 
-const startDate = new Date("2023-07-16T00:00:00");
+const startDate =
+    new Date("2023-07-16T00:00:00");
+
 
 function updateLoveCounter(){
 
@@ -261,73 +306,111 @@ function updateLoveCounter(){
     const diff = now - startDate;
 
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const days =
+        Math.floor(
+            diff / (1000 * 60 * 60 * 24)
+        );
 
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const hours =
+        Math.floor(
+            (diff / (1000 * 60 * 60)) % 24
+        );
 
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const minutes =
+        Math.floor(
+            (diff / (1000 * 60)) % 60
+        );
 
-    const seconds = Math.floor((diff / 1000) % 60);
+    const seconds =
+        Math.floor(
+            (diff / 1000) % 60
+        );
 
 
-    document.getElementById("days").innerHTML = days;
+    const daysEl =
+        document.getElementById("days");
 
-    document.getElementById("hours").innerHTML = hours;
+    const hoursEl =
+        document.getElementById("hours");
 
-    document.getElementById("minutes").innerHTML = minutes;
+    const minutesEl =
+        document.getElementById("minutes");
 
-    document.getElementById("seconds").innerHTML = seconds;
+    const secondsEl =
+        document.getElementById("seconds");
+
+
+    if(daysEl)
+        daysEl.textContent = days;
+
+    if(hoursEl)
+        hoursEl.textContent = hours;
+
+    if(minutesEl)
+        minutesEl.textContent = minutes;
+
+    if(secondsEl)
+        secondsEl.textContent = seconds;
 
 }
 
 
-setInterval(updateLoveCounter,1000);
-
 updateLoveCounter();
+
+setInterval(updateLoveCounter, 1000);
+
+
 /* =================================
    FLOATING HEARTS
 ================================= */
 
-const heartsContainer = document.querySelector(".hearts-container");
+const heartsContainer =
+    document.querySelector(".hearts-container");
 
 
 function createHeart(){
 
-    if(!heartsContainer) return;
-
-    const heart = document.createElement("div");
-
-    heart.className="heart";
-
-    heart.innerHTML="❤️";
+    if(!heartsContainer)
+        return;
 
 
-    heart.style.left = Math.random()*100 + "%";
+    const heart =
+        document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML = "❤️";
+
+
+    heart.style.left =
+        Math.random() * 100 + "%";
+
 
     heart.style.animationDuration =
-    (3 + Math.random()*5) + "s";
+        (3 + Math.random() * 5) + "s";
 
 
     heart.style.fontSize =
-    (10 + Math.random()*25) + "px";
+        (10 + Math.random() * 25) + "px";
 
 
     heartsContainer.appendChild(heart);
 
 
-    setTimeout(()=>{
+    setTimeout(function(){
 
         heart.remove();
 
-    },8000);
+    }, 8000);
 
 }
 
 
-setInterval(createHeart,500);
+setInterval(createHeart, 500);
+
+
 /* =================================
    LOVE LETTER TYPEWRITER
-   START WHEN SECTION ENTERS SCREEN
 ================================= */
 
 const loveLetterText =
@@ -370,11 +453,14 @@ let letterStarted = false;
 
 function startLoveLetter(){
 
-    if(letterStarted || !loveLetterText) return;
+    if(letterStarted || !loveLetterText)
+        return;
+
 
     letterStarted = true;
 
     let index = 0;
+
 
     function typeLetter(){
 
@@ -399,30 +485,28 @@ function startLoveLetter(){
 
     }
 
+
     typeLetter();
 
 }
 
-
-/* =================================
-   START ONLY WHEN USER SCROLLS TO IT
-================================= */
 
 if(loveLetterSection){
 
     const letterObserver =
         new IntersectionObserver(
 
-            (entries) => {
+            function(entries){
 
-                entries.forEach(entry => {
+                entries.forEach(function(entry){
 
                     if(entry.isIntersecting){
 
                         startLoveLetter();
 
-                        // একবার শুরু হলে আর observer দরকার নেই
-                        letterObserver.unobserve(entry.target);
+                        letterObserver.unobserve(
+                            entry.target
+                        );
 
                     }
 
@@ -440,222 +524,23 @@ if(loveLetterSection){
     letterObserver.observe(loveLetterSection);
 
 }
+
+
 /* =================================
-   PROPOSAL + CONFETTI + FIREWORKS
+   PROPOSAL
 ================================= */
 
-const yesBtn = document.getElementById("yesBtn");
+const yesBtn =
+    document.getElementById("yesBtn");
 
-const foreverBtn = document.getElementById("foreverBtn");
+const foreverBtn =
+    document.getElementById("foreverBtn");
 
 const proposalMessage =
     document.getElementById("proposalMessage");
-
-
-function createFirework(x, y){
-
-    if(typeof confetti !== "function") return;
-
-    confetti({
-
-        particleCount: 80,
-
-        spread: 100,
-
-        startVelocity: 45,
-
-        origin: {
-            x: x,
-            y: y
-        }
-
-    });
-
-}
-
-
-function celebrateLove(){
-
-    if(typeof confetti !== "function") return;
-
-
-    /* BIG CONFETTI BURST */
-
-    confetti({
-
-        particleCount: 200,
-
-        spread: 160,
-
-        startVelocity: 50,
-
-        scalar: 1.2,
-
-        origin: {
-            x: 0.5,
-            y: 0.55
-        }
-
-    });
-
-
-    /* FIREWORKS */
-
-    let fireworks = 0;
-
-    const fireworkInterval = setInterval(()=>{
-
-        createFirework(
-            0.15 + Math.random() * 0.7,
-            0.2 + Math.random() * 0.35
-        );
-
-        fireworks++;
-
-        if(fireworks >= 12){
-
-            clearInterval(fireworkInterval);
-
-        }
-
-    }, 450);
-
-}
-
-
-function showProposalSuccess(){
-
-    if(proposalMessage){
-
-        proposalMessage.style.display = "block";
-
-    }
-
-    celebrateLove();
-
-}
-
-
-if(yesBtn){
-
-    yesBtn.addEventListener("click", ()=>{
-
-        showProposalSuccess();
-
-    });
-
-}
-
-
-if(foreverBtn){
-
-    foreverBtn.addEventListener("click", ()=>{
-
-        showProposalSuccess();
-
-    });
-
-}
-/* =================================
-   CINEMATIC ENDING ANIMATION
-================================= */
-
-const endingSection =
-    document.querySelector(".ending-section");
-
-
-if(endingSection){
-
-    const endingObserver = new IntersectionObserver(
-
-        (entries)=>{
-
-            entries.forEach(entry=>{
-
-                if(entry.isIntersecting){
-
-                    endingSection.classList.add("active");
-
-                }
-
-            });
-
-        },
-
-        {
-            threshold: 0.35
-        }
-
-    );
-
-    endingObserver.observe(endingSection);
-
-}
-/* =================================
-   HERO SCROLL ZOOM + FADE
-================================= */
-
-const heroSection = document.querySelector(".hero");
-const heroImage = document.querySelector(".hero-bg");
-
-if (heroSection && heroImage) {
-
-    window.addEventListener("scroll", () => {
-
-        const heroHeight = heroSection.offsetHeight;
-
-        const scrollY = window.scrollY;
-
-        /* Scroll progress: 0 → 1 */
-
-        let progress = scrollY / heroHeight;
-
-        progress = Math.max(0, Math.min(progress, 1));
-
-
-        /* ==========================
-           ZOOM
-        ========================== */
-
-        const scale = 1 + (progress * 0.28);
-
-
-        /* ==========================
-           FADE
-        ========================== */
-
-        const opacity = 1 - (progress * 1.15);
-
-
-        heroImage.style.transform =
-            `scale(${scale})`;
-
-        heroImage.style.opacity =
-            Math.max(opacity, 0);
-
-    });
-
-}
-/* =================================
-   PROPOSAL + FIREWORKS
-================================= */
 
 const proposalSection =
     document.querySelector(".proposal-section");
-
-const yesForeverBtn =
-    document.getElementById("yesForeverBtn");
-
-const proposalMessage =
-    document.getElementById("proposalMessage");
-
-const fireworksCanvas =
-    document.getElementById("fireworksCanvas");
-
-const fireworksCtx =
-    fireworksCanvas
-        ? fireworksCanvas.getContext("2d")
-        : null;
 
 
 /* =================================
@@ -667,9 +552,9 @@ if(proposalSection){
     const proposalObserver =
         new IntersectionObserver(
 
-            (entries)=>{
+            function(entries){
 
-                entries.forEach(entry=>{
+                entries.forEach(function(entry){
 
                     if(entry.isIntersecting){
 
@@ -677,8 +562,9 @@ if(proposalSection){
                             .classList
                             .add("active");
 
-                        proposalObserver
-                            .unobserve(entry.target);
+                        proposalObserver.unobserve(
+                            entry.target
+                        );
 
                     }
 
@@ -692,20 +578,33 @@ if(proposalSection){
 
         );
 
+
     proposalObserver.observe(proposalSection);
 
 }
 
 
 /* =================================
-   FIREWORKS
+   FIREWORKS CANVAS
 ================================= */
+
+const fireworksCanvas =
+    document.getElementById("fireworksCanvas");
+
+const fireworksCtx =
+    fireworksCanvas
+    ? fireworksCanvas.getContext("2d")
+    : null;
+
 
 let fireworks = [];
 
+
 function resizeFireworksCanvas(){
 
-    if(!fireworksCanvas) return;
+    if(!fireworksCanvas)
+        return;
+
 
     fireworksCanvas.width =
         window.innerWidth;
@@ -715,7 +614,9 @@ function resizeFireworksCanvas(){
 
 }
 
+
 resizeFireworksCanvas();
+
 
 window.addEventListener(
     "resize",
@@ -723,7 +624,15 @@ window.addEventListener(
 );
 
 
-function createFirework(x,y){
+/* =================================
+   CREATE FIREWORK
+================================= */
+
+function createFirework(x, y){
+
+    if(!fireworksCanvas)
+        return;
+
 
     for(let i = 0; i < 80; i++){
 
@@ -732,6 +641,7 @@ function createFirework(x,y){
 
         const speed =
             Math.random() * 6 + 2;
+
 
         fireworks.push({
 
@@ -748,7 +658,7 @@ function createFirework(x,y){
             life: 1,
 
             decay:
-                Math.random() * .015 + .01,
+                Math.random() * 0.015 + 0.01,
 
             size:
                 Math.random() * 3 + 1
@@ -760,9 +670,15 @@ function createFirework(x,y){
 }
 
 
+/* =================================
+   ANIMATE FIREWORKS
+================================= */
+
 function animateFireworks(){
 
-    if(!fireworksCtx) return;
+    if(!fireworksCtx)
+        return;
+
 
     fireworksCtx.clearRect(
         0,
@@ -771,42 +687,58 @@ function animateFireworks(){
         fireworksCanvas.height
     );
 
-    fireworks.forEach((particle,index)=>{
+
+    fireworks.forEach(function(particle, index){
 
         particle.x += particle.vx;
 
         particle.y += particle.vy;
 
-        particle.vy += .04;
+        particle.vy += 0.04;
 
         particle.life -= particle.decay;
 
+
         fireworksCtx.globalAlpha =
-            Math.max(particle.life,0);
+            Math.max(particle.life, 0);
+
 
         fireworksCtx.beginPath();
 
+
         fireworksCtx.arc(
+
             particle.x,
+
             particle.y,
+
             particle.size,
+
             0,
+
             Math.PI * 2
+
         );
 
-        fireworksCtx.fillStyle = "#ffffff";
+
+        fireworksCtx.fillStyle =
+            "#ffffff";
+
 
         fireworksCtx.fill();
 
+
         if(particle.life <= 0){
 
-            fireworks.splice(index,1);
+            fireworks.splice(index, 1);
 
         }
 
     });
 
+
     fireworksCtx.globalAlpha = 1;
+
 
     requestAnimationFrame(
         animateFireworks
@@ -814,81 +746,143 @@ function animateFireworks(){
 
 }
 
+
 animateFireworks();
 
 
 /* =================================
-   YES FOREVER
+   LOVE CELEBRATION
 ================================= */
 
-if(yesForeverBtn){
+function celebrateLove(){
 
-    yesForeverBtn.addEventListener(
-        "click",
-        ()=>{
+    /* CONFETTI */
 
-            if(proposalMessage){
+    if(typeof confetti === "function"){
 
-                proposalMessage
-                    .classList
-                    .add("show");
+        confetti({
+
+            particleCount: 200,
+
+            spread: 160,
+
+            startVelocity: 50,
+
+            scalar: 1.2,
+
+            origin: {
+                x: 0.5,
+                y: 0.55
+            }
+
+        });
+
+    }
+
+
+    /* FIREWORKS */
+
+    let count = 0;
+
+
+    const interval =
+        setInterval(function(){
+
+            createFirework(
+
+                Math.random() *
+                window.innerWidth,
+
+                Math.random() *
+                window.innerHeight *
+                0.55
+
+            );
+
+
+            count++;
+
+
+            if(count >= 8){
+
+                clearInterval(interval);
 
             }
 
+        }, 450);
 
-            /* CONFETTI */
-
-            if(typeof confetti === "function"){
-
-                confetti({
-
-                    particleCount: 180,
-
-                    spread: 120,
-
-                    origin: {
-                        y: .65
-                    }
-
-                });
-
-            }
+}
 
 
-            /* FIREWORKS */
+/* =================================
+   PROPOSAL BUTTONS
+================================= */
 
-            for(let i = 0; i < 6; i++){
+function showProposalSuccess(){
 
-                setTimeout(()=>{
+    if(proposalMessage){
 
-                    createFirework(
+        proposalMessage.classList.add("show");
 
-                        Math.random()
-                        * window.innerWidth,
+        proposalMessage.style.display = "block";
 
-                        Math.random()
-                        * window.innerHeight
-                        * .55
+    }
 
-                    );
 
-                }, i * 400);
+    celebrateLove();
 
-            }
+
+    /* Scroll to ending */
+
+    setTimeout(function(){
+
+        const ending =
+            document.getElementById(
+                "endingSection"
+            );
+
+
+        if(ending){
+
+            ending.scrollIntoView({
+                behavior: "smooth"
+            });
 
         }
+
+    }, 4500);
+
+}
+
+
+if(yesBtn){
+
+    yesBtn.addEventListener(
+        "click",
+        showProposalSuccess
     );
 
 }
+
+
+if(foreverBtn){
+
+    foreverBtn.addEventListener(
+        "click",
+        showProposalSuccess
+    );
+
+}
+
+
 /* =================================
    CINEMATIC ENDING
 ================================= */
 
 const endingSection =
-    document.getElementById("endingSection");
-
-const yesForeverButton =
-    document.getElementById("yesForeverBtn");
+    document.getElementById(
+        "endingSection"
+    );
 
 
 if(endingSection){
@@ -896,9 +890,9 @@ if(endingSection){
     const endingObserver =
         new IntersectionObserver(
 
-            (entries) => {
+            function(entries){
 
-                entries.forEach(entry => {
+                entries.forEach(function(entry){
 
                     if(entry.isIntersecting){
 
@@ -906,8 +900,9 @@ if(endingSection){
                             .classList
                             .add("active");
 
-                        endingObserver
-                            .unobserve(entry.target);
+                        endingObserver.unobserve(
+                            entry.target
+                        );
 
                     }
 
@@ -921,28 +916,63 @@ if(endingSection){
 
         );
 
-    endingObserver.observe(endingSection);
+
+    endingObserver.observe(
+        endingSection
+    );
 
 }
 
 
 /* =================================
-   SHOW ENDING AFTER PROPOSAL
+   HERO SCROLL ZOOM + FADE
 ================================= */
 
-if(yesForeverButton){
+const heroSection =
+    document.querySelector(".hero");
 
-    yesForeverButton.addEventListener(
-        "click",
-        () => {
+const heroImage =
+    document.querySelector(".hero-bg");
 
-            setTimeout(() => {
 
-                endingSection?.scrollIntoView({
-                    behavior: "smooth"
-                });
+if(heroSection && heroImage){
 
-            }, 4500);
+    window.addEventListener(
+        "scroll",
+        function(){
+
+            const heroHeight =
+                heroSection.offsetHeight;
+
+            const scrollY =
+                window.scrollY;
+
+
+            let progress =
+                scrollY / heroHeight;
+
+
+            progress =
+                Math.max(
+                    0,
+                    Math.min(progress, 1)
+                );
+
+
+            const scale =
+                1 + (progress * 0.28);
+
+
+            const opacity =
+                1 - (progress * 1.15);
+
+
+            heroImage.style.transform =
+                `scale(${scale})`;
+
+
+            heroImage.style.opacity =
+                Math.max(opacity, 0);
 
         }
     );
