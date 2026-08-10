@@ -880,3 +880,71 @@ if(yesForeverBtn){
     );
 
 }
+/* =================================
+   CINEMATIC ENDING
+================================= */
+
+const endingSection =
+    document.getElementById("endingSection");
+
+const yesForeverButton =
+    document.getElementById("yesForeverBtn");
+
+
+if(endingSection){
+
+    const endingObserver =
+        new IntersectionObserver(
+
+            (entries) => {
+
+                entries.forEach(entry => {
+
+                    if(entry.isIntersecting){
+
+                        endingSection
+                            .classList
+                            .add("active");
+
+                        endingObserver
+                            .unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.25
+            }
+
+        );
+
+    endingObserver.observe(endingSection);
+
+}
+
+
+/* =================================
+   SHOW ENDING AFTER PROPOSAL
+================================= */
+
+if(yesForeverButton){
+
+    yesForeverButton.addEventListener(
+        "click",
+        () => {
+
+            setTimeout(() => {
+
+                endingSection?.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }, 4500);
+
+        }
+    );
+
+}

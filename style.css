@@ -3084,3 +3084,311 @@ body{
     }
 
 }
+/* =================================
+   CINEMATIC ENDING
+================================= */
+
+.ending-section {
+
+    min-height: 100vh;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 100px 20px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 40, 110, 0.12),
+            transparent 55%
+        );
+
+}
+
+
+/* Dark cinematic glow */
+
+.ending-section::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.04),
+            transparent 60%
+        );
+
+    pointer-events: none;
+
+}
+
+
+/* =================================
+   ENDING CONTENT
+================================= */
+
+.ending-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    max-width: 800px;
+
+    opacity: 0;
+
+    transform:
+        translateY(50px)
+        scale(.95);
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+.ending-section.active
+.ending-content {
+
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+/* =================================
+   HEART
+================================= */
+
+.ending-heart {
+
+    font-size: 65px;
+
+    margin-bottom: 25px;
+
+    animation:
+        endingHeartBeat 2s ease-in-out infinite;
+
+    filter:
+        drop-shadow(
+            0 0 25px
+            rgba(255,60,120,.7)
+        );
+
+}
+
+
+@keyframes endingHeartBeat {
+
+    0%,
+    100% {
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        transform: scale(1.15);
+
+    }
+
+}
+
+
+/* =================================
+   SMALL TEXT
+================================= */
+
+.ending-small {
+
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color:
+        rgba(255,255,255,.55);
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =================================
+   MAIN TITLE
+================================= */
+
+.ending-content h2 {
+
+    font-family:
+        'Great Vibes',
+        cursive;
+
+    font-size:
+        clamp(55px, 8vw, 100px);
+
+    font-weight: 400;
+
+    line-height: 1.05;
+
+    color: #fff;
+
+    margin: 0;
+
+    text-shadow:
+
+        0 0 15px
+        rgba(255,70,130,.7),
+
+        0 0 45px
+        rgba(255,70,130,.3);
+
+}
+
+
+/* =================================
+   MESSAGE
+================================= */
+
+.ending-message {
+
+    margin-top: 35px;
+
+    font-size: 16px;
+
+    line-height: 2;
+
+    color:
+        rgba(255,255,255,.75);
+
+}
+
+
+/* =================================
+   NAMES
+================================= */
+
+.ending-names {
+
+    margin-top: 45px;
+
+    font-size: 15px;
+
+    letter-spacing: 5px;
+
+    font-weight: 500;
+
+}
+
+
+.ending-names span {
+
+    margin: 0 10px;
+
+}
+
+
+/* =================================
+   FOREVER
+================================= */
+
+.ending-forever {
+
+    margin-top: 18px;
+
+    font-family:
+        'Great Vibes',
+        cursive;
+
+    font-size: 32px;
+
+    color:
+        rgba(255,255,255,.85);
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width:600px) {
+
+    .ending-section {
+
+        min-height: 90vh;
+
+        padding: 80px 20px;
+
+    }
+
+
+    .ending-heart {
+
+        font-size: 50px;
+
+    }
+
+
+    .ending-small {
+
+        font-size: 10px;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .ending-content h2 {
+
+        font-size: 58px;
+
+    }
+
+
+    .ending-message {
+
+        font-size: 13px;
+
+        line-height: 1.8;
+
+    }
+
+
+    .ending-names {
+
+        font-size: 12px;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .ending-forever {
+
+        font-size: 28px;
+
+    }
+
+}
