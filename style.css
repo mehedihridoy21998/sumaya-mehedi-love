@@ -2615,3 +2615,224 @@ body{
 
     will-change: transform, opacity;
 }
+/* =================================
+   OUR JOURNEY CLICKABLE HINT
+================================= */
+
+.journey-hint {
+    text-align: center;
+    margin-top: -15px;
+    margin-bottom: 40px;
+
+    font-size: 14px;
+    letter-spacing: 1px;
+
+    color: rgba(255,255,255,0.75);
+
+    animation: journeyHintPulse 2.5s ease-in-out infinite;
+}
+
+
+/* =================================
+   CLICKABLE JOURNEY CARDS
+================================= */
+
+.timeline-item {
+    position: relative;
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+
+/* Image */
+
+.timeline-item img {
+    transition:
+        transform 0.7s cubic-bezier(.2,.8,.2,1),
+        filter 0.5s ease;
+}
+
+
+/* Hover */
+
+.timeline-item:hover {
+    transform: translateY(-8px) scale(1.02);
+
+    box-shadow:
+        0 20px 60px rgba(255, 60, 130, 0.3);
+}
+
+.timeline-item:hover img {
+    transform: scale(1.08);
+
+    filter: brightness(0.7);
+}
+
+
+/* =================================
+   EXPLORE OVERLAY
+================================= */
+
+.timeline-item::after {
+
+    content: "♡  TAP TO DISCOVER  →";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 65px;
+
+    transform:
+        translate(-50%, 20px);
+
+    padding: 10px 18px;
+
+    border-radius: 50px;
+
+    background: rgba(0,0,0,0.65);
+
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    color: #fff;
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease;
+
+    pointer-events: none;
+
+    z-index: 5;
+}
+
+
+/* Show overlay */
+
+.timeline-item:hover::after {
+
+    opacity: 1;
+
+    transform:
+        translate(-50%, 0);
+
+}
+
+
+/* =================================
+   SMALL HEART GLOW
+================================= */
+
+.timeline-item::before {
+
+    content: "❤️";
+
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(0,0,0,0.45);
+
+    backdrop-filter: blur(8px);
+
+    opacity: 0.9;
+
+    z-index: 6;
+
+    transition:
+        transform 0.4s ease,
+        background 0.4s ease;
+}
+
+
+.timeline-item:hover::before {
+
+    transform: scale(1.15);
+
+    background: rgba(255,60,120,0.35);
+}
+
+
+/* =================================
+   HINT ANIMATION
+================================= */
+
+@keyframes journeyHintPulse {
+
+    0%,
+    100% {
+        opacity: 0.55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .journey-hint {
+
+        font-size: 12px;
+
+        margin-top: -10px;
+        margin-bottom: 30px;
+
+        padding: 0 15px;
+
+    }
+
+    .timeline-item::after {
+
+        content: "♡  TAP TO DISCOVER";
+
+        bottom: 65px;
+
+        font-size: 9px;
+
+        padding: 8px 13px;
+
+    }
+
+    /* Mobile doesn't have hover,
+       so keep the hint visible */
+
+    .timeline-item::after {
+
+        opacity: 0.9;
+
+        transform:
+            translate(-50%, 0);
+
+    }
+
+}
