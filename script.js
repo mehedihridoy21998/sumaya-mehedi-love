@@ -327,13 +327,20 @@ function createHeart(){
 setInterval(createHeart,500);
 /* =================================
    LOVE LETTER TYPEWRITER
+   START WHEN SECTION ENTERS SCREEN
 ================================= */
 
-const loveLetterText = document.getElementById("loveLetterText");
-const letterSignature = document.querySelector(".letter-signature");
+const loveLetterText =
+    document.getElementById("loveLetterText");
 
-const loveLetterMessage = `
-My love,
+const letterSignature =
+    document.querySelector(".letter-signature");
+
+const loveLetterSection =
+    document.querySelector(".love-letter-section");
+
+
+const loveLetterMessage = `My love,
 
 If I could write every feeling I have for you,
 I would need a lifetime and still wouldn't find
@@ -355,10 +362,11 @@ In every version of our story.
 You are not just a part of my life.
 You are the part that makes it beautiful.
 
-I love you, Sumaya. ❤️
-`;
+I love you, Sumaya. ❤️`;
+
 
 let letterStarted = false;
+
 
 function startLoveLetter(){
 
@@ -396,35 +404,38 @@ function startLoveLetter(){
 }
 
 
-/* Start when Love Letter enters screen */
-
-const loveLetterSection =
-    document.querySelector(".love-letter-section");
-
+/* =================================
+   START ONLY WHEN USER SCROLLS TO IT
+================================= */
 
 if(loveLetterSection){
 
-    const letterObserver = new IntersectionObserver(
+    const letterObserver =
+        new IntersectionObserver(
 
-        (entries)=>{
+            (entries) => {
 
-            entries.forEach(entry=>{
+                entries.forEach(entry => {
 
-                if(entry.isIntersecting){
+                    if(entry.isIntersecting){
 
-                    startLoveLetter();
+                        startLoveLetter();
 
-                }
+                        // একবার শুরু হলে আর observer দরকার নেই
+                        letterObserver.unobserve(entry.target);
 
-            });
+                    }
 
-        },
+                });
 
-        {
-            threshold: 0.35
-        }
+            },
 
-    );
+            {
+                threshold: 0.30
+            }
+
+        );
+
 
     letterObserver.observe(loveLetterSection);
 
