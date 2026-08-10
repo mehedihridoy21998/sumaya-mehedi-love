@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mehedi ❤️ Sumaya</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<!-- Lenis -->
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- AOS -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<!-- Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+</head>
+
+<body>
+
+<!-- =================================
+     FLOATING HEARTS
+================================= -->
+
+<div class="hearts-container"></div>
+
+
+<!-- Background -->
+<div id="bg1" class="bg-layer"></div>
+<div id="bg2" class="bg-layer"></div>
+
+
+<!-- Cursor Glow -->
+<div id="cursorGlow"></div>
+
+
+<!-- Loader -->
+<div id="loader">
+
+    <div class="heart-loader">❤️</div>
+
+    <h2>Loading Our Love Story...</h2>
+
+</div>
+
+
+<!-- Hero Section -->
+<section class="hero">
+
+    <img src="images/hero.jpg" class="hero-bg" alt="Hero">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+        <h3>MEHEDI</h3>
+
+        <h1>&</h1>
+
+        <h2>SUMAYA</h2>
+
+        <p>Every Love Story Is Beautiful</p>
+
+        <p>But Ours Is My Favorite.</p>
+
+        <span class="scroll-down">
+            Scroll To Begin ↓
+        </span>
+
+    </div>
+
+</section>
+<!-- ==========================
+     STORY SECTION
+========================== -->
+
+<section class="story">
+
+    <div class="story-content" data-aos="fade-up">
+
+        <h2>Our Story</h2>
+
+        <p>
+            Every love story has a beginning,
+            but ours felt like destiny from the very first moment.
+            Every smile, every call, every memory became a chapter
+            of the most beautiful journey of our lives.
+        </p>
+
+    </div>
+</section>
+
+<!-- ==========================
+     GALLERY SECTION
+========================== -->
+
+<section class="gallery">
+
+    <div class="memories-heading">
+
+        <h2>Our Memories ❤️</h2>
+
+        <p>
+            A collection of the moments I never want to forget.
+        </p>
+
+    </div>
+
+    <div class="gallery-grid">
+
+        <img src="images/1.jpg" alt="">
+        <img src="images/2.jpg" alt="">
+        <img src="images/3.jpg" alt="">
+        <img src="images/4.jpg" alt="">
+        <img src="images/5.jpg" alt="">
+        <img src="images/6.jpg" alt="">
+        <img src="images/7.jpg" alt="">
+        <img src="images/8.jpg" alt="">
+        <img src="images/9.jpg" alt="">
+        <img src="images/10.jpg" alt="">
+
+    </div>
+
+</section>
+<!-- ==========================
+     LIGHTBOX
+========================== -->
+
+<div id="lightbox">
+
+    <span id="closeLightbox">&times;</span>
+
+    <img id="lightboxImg" src="" alt="">
+
+</div>
+<!-- =================================
+     LOVE COUNTER
+================================= -->
+
+<section class="counter-section">
+
+    <h2>Our Love Story ❤️</h2>
+
+    <p class="counter-text">
+        Every second with you is a beautiful memory.
+    </p>
+
+    <div class="counter-container">
+
+        <div class="counter-box">
+            <span id="days">0</span>
+            <small>Days</small>
+        </div>
+
+        <div class="counter-box">
+            <span id="hours">0</span>
+            <small>Hours</small>
+        </div>
+
+        <div class="counter-box">
+            <span id="minutes">0</span>
+            <small>Minutes</small>
+        </div>
+
+        <div class="counter-box">
+            <span id="seconds">0</span>
+            <small>Seconds</small>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =================================
+     MUSIC PLAYER
+================================= -->
+
+<audio id="bgMusic" loop>
+    <source src="music/song.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn" class="music-btn">
+    🎵
+</button>
+
+
+<!-- =================================
+     AOS
+================================= -->
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<!-- ==========================
+     TIMELINE
+========================== -->
+
+<section class="timeline">
+
+    <h2>Our Journey ❤️</h2>
+
+    <div class="timeline-container">
+
+        <!-- 01. FIRST CALL -->
+        <div class="timeline-item"
+            data-img="images/first-call.jpg"
+            data-title="📞 First Call"
+            data-date="16 July 2023"
+            data-time="11:15 PM"
+            data-location="FaceTime"
+            data-desc="The first time hearing your voice felt magical.">
+
+            <img src="images/first-call.jpg" alt="First Call">
+            <h3>First Call</h3>
+
+        </div>
+
+
+        <!-- 02. FIRST MEET -->
+        <div class="timeline-item"
+            data-img="images/first-meet.jpg"
+            data-title="❤️ First Meet"
+            data-date="16 July 2023"
+            data-time="10:30 PM"
+            data-location="Airport"
+            data-desc="The day our beautiful story began.">
+
+            <img src="images/first-meet.jpg" alt="First Meet">
+            <h3>First Meet</h3>
+
+        </div>
+
+        <!-- 03. FIRST SMILE -->
+
+<div class="timeline-item"
+    data-img="images/first-smile.jpg"
+    data-title="😊 First Smile"
+    data-date="2023"
+    data-time="—"
+    data-location="—"
+    data-desc="The smile that made an unforgettable place in my heart.">
+
+    <img src="images/first-smile.jpg" alt="First Smile">
+
+    <h3>First Smile</h3>
+
+</div>
+
+
+        <!-- 04. KABIN -->
+        <div class="timeline-item"
+            data-img="images/kabin.JPG"
+            data-title="💍 Our Kabin"
+            data-date="25 May 2025"
+            data-time="—"
+            data-location="Dhaka"
+            data-desc="The day we made our beautiful forever promise.">
+
+            <img src="images/kabin.JPG" alt="Our Kabin">
+            <h3>Our Kabin</h3>
+
+        </div>
+
+
+        <!-- 03. MEHENDI -->
+        <div class="timeline-item"
+            data-img="images/Mehendi.jpg"
+            data-title="💛 Our Mehendi"
+            data-date="11 June 2025"
+            data-time="2:30 PM"
+            data-location="Dhaka"
+            data-desc="A beautiful celebration filled with colors, happiness and unforgettable memories.">
+
+            <img src="images/Mehendi.jpg" alt="Our Mehendi">
+            <h3>Our Mehendi</h3>
+
+        </div>
+
+
+        <!-- 05. LOVE YOU -->
+        <div class="timeline-item"
+            data-img="images/love-you.jpg"
+            data-title="❤️ I Love You"
+            data-date="20 July 2023"
+            data-time="09:00 PM"
+            data-location="Messenger"
+            data-desc="Three little words that changed our lives forever.">
+
+            <img src="images/love-you.jpg" alt="I Love You">
+            <h3>I Love You</h3>
+
+        </div>
+
+
+        <!-- 06. HALDI -->
+        <div class="timeline-item"
+            data-img="images/haldi.JPG"
+            data-title="💛 Our Haldi"
+            data-date="12 June 2025"
+            data-time="06:00 PM"
+            data-location="Dhaka"
+            data-desc="A night filled with happiness, colors, laughter and unforgettable memories.">
+
+            <img src="images/haldi.JPG" alt="Our Haldi">
+            <h3>Our Haldi</h3>
+
+        </div>
+
+
+        <!-- 07. WEDDING -->
+        <div class="timeline-item"
+            data-img="images/wedding.JPG"
+            data-title="💒 Our Wedding"
+            data-date="13 June 2025"
+            data-time="07:00 PM"
+            data-location="Dhaka"
+            data-desc="The day our love story became a beautiful new chapter of our lives.">
+
+            <img src="images/wedding.JPG" alt="Our Wedding">
+            <h3>Our Wedding</h3>
+
+        </div>
+
+
+        <!-- 08. BASHOR GHOR -->
+        <div class="timeline-item"
+            data-img="images/bashor-ghor.jpg"
+            data-title="🌙 Bashor Ghor"
+            data-date="14 June 2025"
+            data-time="01:00 AM"
+            data-location="Dhaka"
+            data-desc="A private and unforgettable chapter of our wedding journey.">
+
+            <img src="images/bashor-ghor.jpg" alt="Bashor Ghor">
+            <h3>Bashor Ghor</h3>
+
+        </div>
+
+
+        <!-- 09. POST WEDDING -->
+        <div class="timeline-item"
+            data-img="images/post-wedding.jpg"
+            data-title="💕 Post Wedding"
+            data-date="14 June 2025"
+            data-time="08:00 PM"
+            data-location="Dhaka"
+            data-desc="The beautiful days after our wedding, filled with love and unforgettable memories.">
+
+            <img src="images/post-wedding.jpg" alt="Post Wedding">
+            <h3>Post Wedding</h3>
+
+        </div>
+
+
+        <!-- FIRST TOUR -->
+<div class="timeline-item"
+
+    data-img="images/first-tour.jpg"
+    data-title="✈️ First Tour"
+    data-date="28 July 2025"
+    data-time="10:30 PM"
+    data-location="Cox's Bazar"
+    data-desc="Our first journey together — where Cox's Bazar became more than just a destination. Every moment, every laugh, and every memory became a beautiful chapter of our story. ❤️">
+
+    <img src="images/first-tour.jpg" alt="First Tour">
+
+    <h3>First Tour</h3>
+
+</div>
+        <!-- 10. FOREVER -->
+        <div class="timeline-item"
+            data-img="images/forever.jpg"
+            data-title="♾️ Forever"
+            data-date="Forever"
+            data-time="∞"
+            data-location="Our Hearts"
+            data-desc="No matter where life takes us, my heart will always choose you. Forever.">
+
+            <img src="images/forever.jpg" alt="Forever">
+            <h3>Forever</h3>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================
+     MEMORY POPUP
+========================== -->
+
+<div id="memoryPopup" class="memory-popup">
+
+    <div class="memory-card">
+
+        <span id="closeMemory">&times;</span>
+
+        <img id="memoryImage" src="" alt="Memory">
+
+        <h2 id="memoryTitle"></h2>
+
+        <h4 id="memoryDate"></h4>
+
+        <h5 id="memoryTime"></h5>
+
+        <h5 id="memoryLocation"></h5>
+
+        <p id="memoryDesc"></p>
+
+    </div>
+
+</div>
+<!-- =================================
+     LOVE LETTER
+================================= -->
+
+<section class="love-letter-section">
+
+    <div class="love-letter-container">
+
+        <div class="letter-heart">❤️</div>
+
+        <h2>For My Love</h2>
+
+        <p class="letter-subtitle">
+            A few words from my heart...
+        </p>
+
+        <div class="love-letter">
+
+            <p id="loveLetterText"></p>
+
+            <span class="letter-cursor">|</span>
+
+        </div>
+
+        <div class="letter-signature">
+            Forever Yours,<br>
+            <strong>Mehedi ❤️</strong>
+        </div>
+
+    </div>
+
+</section>
+<!-- =================================
+     PROPOSAL SECTION
+================================= -->
+
+<section class="proposal-section">
+
+    <div class="proposal-content">
+
+        <div class="proposal-heart">💍</div>
+
+        <h2>One Last Question...</h2>
+
+        <p>
+            After every memory, every smile,
+            every difficult moment and every beautiful day...
+        </p>
+
+        <h1>
+            Will You Choose Me<br>
+            Forever?
+        </h1>
+
+        <div class="proposal-buttons">
+
+            <button id="yesBtn" class="proposal-btn yes-btn">
+                YES, FOREVER ❤️
+            </button>
+
+            <button id="foreverBtn" class="proposal-btn">
+                I ALREADY DID 💍
+            </button>
+
+        </div>
+
+        <div id="proposalMessage" class="proposal-message">
+
+            <h2>She Said YES! ❤️</h2>
+
+            <p>
+                Then let this be our promise...
+                <br>
+                You, me, and forever.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =================================
+     CINEMATIC ENDING
+================================= -->
+
+<section class="ending-section">
+
+    <div class="ending-content">
+
+        <div class="ending-heart">❤️</div>
+
+        <p class="ending-line ending-line-1">
+            Our story began with a moment...
+        </p>
+
+        <p class="ending-line ending-line-2">
+            But it became a lifetime.
+        </p>
+
+        <div class="ending-divider"></div>
+
+        <h2 class="ending-title">
+            Forever,
+        </h2>
+
+        <h1 class="ending-names">
+            Mehedi <span>❤️</span> Sumaya
+        </h1>
+
+        <p class="ending-final">
+            And this is only the beginning...
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ==========================
+     MAIN JAVASCRIPT
+========================== -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
