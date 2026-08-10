@@ -2836,3 +2836,251 @@ body{
     }
 
 }
+/* =================================
+   PROPOSAL SECTION
+================================= */
+
+.proposal-section {
+
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 100px 20px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.proposal-content {
+
+    max-width: 800px;
+
+    opacity: 0;
+
+    transform: translateY(60px) scale(.96);
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s cubic-bezier(.2,.8,.2,1);
+}
+
+
+.proposal-section.active .proposal-content {
+
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+.proposal-small {
+
+    font-size: 14px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: rgba(255,255,255,.65);
+
+    margin-bottom: 25px;
+}
+
+
+.proposal-content h2 {
+
+    font-family: 'Great Vibes', cursive;
+
+    font-size: clamp(55px, 8vw, 100px);
+
+    font-weight: 400;
+
+    line-height: 1.05;
+
+    margin: 0;
+
+    color: #fff;
+
+    text-shadow:
+        0 0 15px rgba(255,70,130,.7),
+        0 0 40px rgba(255,70,130,.35);
+}
+
+
+.proposal-text {
+
+    max-width: 600px;
+
+    margin: 30px auto 40px;
+
+    font-size: 15px;
+
+    line-height: 1.9;
+
+    color: rgba(255,255,255,.75);
+}
+
+
+/* =================================
+   YES BUTTON
+================================= */
+
+#yesForeverBtn {
+
+    border: 1px solid rgba(255,255,255,.3);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,60,120,.9),
+            rgba(180,30,90,.9)
+        );
+
+    color: #fff;
+
+    padding: 17px 35px;
+
+    border-radius: 50px;
+
+    font-family: 'Poppins', sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 40px rgba(255,40,120,.35);
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+}
+
+
+#yesForeverBtn:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 15px 60px rgba(255,40,120,.55);
+}
+
+
+#yesForeverBtn:active {
+
+    transform: scale(.95);
+
+}
+
+
+/* =================================
+   PROPOSAL MESSAGE
+================================= */
+
+.proposal-message {
+
+    margin-top: 30px;
+
+    font-family: 'Great Vibes', cursive;
+
+    font-size: 35px;
+
+    color: #fff;
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+
+.proposal-message.show {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+}
+
+
+/* =================================
+   FIREWORK CANVAS
+================================= */
+
+#fireworksCanvas {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 9999;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width:600px) {
+
+    .proposal-section {
+
+        min-height: 90vh;
+
+        padding: 80px 20px;
+    }
+
+    .proposal-small {
+
+        font-size: 11px;
+
+        letter-spacing: 3px;
+    }
+
+    .proposal-content h2 {
+
+        font-size: 58px;
+    }
+
+    .proposal-text {
+
+        font-size: 13px;
+
+        line-height: 1.8;
+    }
+
+    #yesForeverBtn {
+
+        padding: 15px 28px;
+
+        font-size: 11px;
+    }
+
+    .proposal-message {
+
+        font-size: 28px;
+    }
+
+}

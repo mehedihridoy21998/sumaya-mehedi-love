@@ -636,3 +636,247 @@ if (heroSection && heroImage) {
     });
 
 }
+/* =================================
+   PROPOSAL + FIREWORKS
+================================= */
+
+const proposalSection =
+    document.querySelector(".proposal-section");
+
+const yesForeverBtn =
+    document.getElementById("yesForeverBtn");
+
+const proposalMessage =
+    document.getElementById("proposalMessage");
+
+const fireworksCanvas =
+    document.getElementById("fireworksCanvas");
+
+const fireworksCtx =
+    fireworksCanvas
+        ? fireworksCanvas.getContext("2d")
+        : null;
+
+
+/* =================================
+   PROPOSAL SCROLL ANIMATION
+================================= */
+
+if(proposalSection){
+
+    const proposalObserver =
+        new IntersectionObserver(
+
+            (entries)=>{
+
+                entries.forEach(entry=>{
+
+                    if(entry.isIntersecting){
+
+                        proposalSection
+                            .classList
+                            .add("active");
+
+                        proposalObserver
+                            .unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.25
+            }
+
+        );
+
+    proposalObserver.observe(proposalSection);
+
+}
+
+
+/* =================================
+   FIREWORKS
+================================= */
+
+let fireworks = [];
+
+function resizeFireworksCanvas(){
+
+    if(!fireworksCanvas) return;
+
+    fireworksCanvas.width =
+        window.innerWidth;
+
+    fireworksCanvas.height =
+        window.innerHeight;
+
+}
+
+resizeFireworksCanvas();
+
+window.addEventListener(
+    "resize",
+    resizeFireworksCanvas
+);
+
+
+function createFirework(x,y){
+
+    for(let i = 0; i < 80; i++){
+
+        const angle =
+            Math.random() * Math.PI * 2;
+
+        const speed =
+            Math.random() * 6 + 2;
+
+        fireworks.push({
+
+            x: x,
+
+            y: y,
+
+            vx:
+                Math.cos(angle) * speed,
+
+            vy:
+                Math.sin(angle) * speed,
+
+            life: 1,
+
+            decay:
+                Math.random() * .015 + .01,
+
+            size:
+                Math.random() * 3 + 1
+
+        });
+
+    }
+
+}
+
+
+function animateFireworks(){
+
+    if(!fireworksCtx) return;
+
+    fireworksCtx.clearRect(
+        0,
+        0,
+        fireworksCanvas.width,
+        fireworksCanvas.height
+    );
+
+    fireworks.forEach((particle,index)=>{
+
+        particle.x += particle.vx;
+
+        particle.y += particle.vy;
+
+        particle.vy += .04;
+
+        particle.life -= particle.decay;
+
+        fireworksCtx.globalAlpha =
+            Math.max(particle.life,0);
+
+        fireworksCtx.beginPath();
+
+        fireworksCtx.arc(
+            particle.x,
+            particle.y,
+            particle.size,
+            0,
+            Math.PI * 2
+        );
+
+        fireworksCtx.fillStyle = "#ffffff";
+
+        fireworksCtx.fill();
+
+        if(particle.life <= 0){
+
+            fireworks.splice(index,1);
+
+        }
+
+    });
+
+    fireworksCtx.globalAlpha = 1;
+
+    requestAnimationFrame(
+        animateFireworks
+    );
+
+}
+
+animateFireworks();
+
+
+/* =================================
+   YES FOREVER
+================================= */
+
+if(yesForeverBtn){
+
+    yesForeverBtn.addEventListener(
+        "click",
+        ()=>{
+
+            if(proposalMessage){
+
+                proposalMessage
+                    .classList
+                    .add("show");
+
+            }
+
+
+            /* CONFETTI */
+
+            if(typeof confetti === "function"){
+
+                confetti({
+
+                    particleCount: 180,
+
+                    spread: 120,
+
+                    origin: {
+                        y: .65
+                    }
+
+                });
+
+            }
+
+
+            /* FIREWORKS */
+
+            for(let i = 0; i < 6; i++){
+
+                setTimeout(()=>{
+
+                    createFirework(
+
+                        Math.random()
+                        * window.innerWidth,
+
+                        Math.random()
+                        * window.innerHeight
+                        * .55
+
+                    );
+
+                }, i * 400);
+
+            }
+
+        }
+    );
+
+}
