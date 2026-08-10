@@ -1047,231 +1047,99 @@ body{
 
 }
 /* =================================
-   LOVE LETTER
-================================= */
+   PREMIUM LOVE LETTER
+================================ */
 
-.love-letter-section {
-
-    min-height: 100vh;
-
-    width: 100%;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    padding: 100px 20px;
-
-    text-align: center;
-
+.love-letter-section{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:100px 20px;
+    position:relative;
 }
 
+.love-letter-card{
+    width:min(900px, 92%);
+    padding:60px 55px;
+    border-radius:30px;
 
-.love-letter-container {
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.15);
 
-    width: min(850px, 100%);
-
-    padding: 60px 55px;
-
-    border-radius: 35px;
-
-    background: rgba(255, 255, 255, 0.08);
-
-    border: 1px solid rgba(255, 255, 255, 0.15);
-
-    backdrop-filter: blur(20px);
-
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
 
     box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.45);
+        0 30px 80px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.08);
 
+    text-align:center;
 }
 
-
-.letter-heart {
-
-    font-size: 55px;
-
-    margin-bottom: 20px;
-
-    animation: letterHeartBeat 1.5s infinite;
-
+.love-letter-card h2{
+    font-family:'Great Vibes',cursive;
+    font-size:52px;
+    color:#ff6b9d;
+    margin-bottom:10px;
 }
 
-
-.love-letter-container h2 {
-
-    font-family: 'Great Vibes', cursive;
-
-    font-size: 58px;
-
-    margin-bottom: 8px;
-
+.letter-subtitle{
+    color:rgba(255,255,255,0.65);
+    font-size:15px;
+    margin-bottom:35px;
 }
 
-
-.letter-subtitle {
-
-    font-size: 15px;
-
-    opacity: 0.65;
-
-    margin-bottom: 40px;
-
+.love-letter-text{
+    white-space:pre-line;
+    color:rgba(255,255,255,0.9);
+    font-size:17px;
+    line-height:2;
+    text-align:left;
+    min-height:200px;
 }
 
+.letter-signature{
+    margin-top:35px;
+    font-family:'Great Vibes',cursive;
+    font-size:32px;
+    color:#ff6b9d;
 
-.love-letter {
-
-    min-height: 180px;
-
-    max-width: 700px;
-
-    margin: auto;
-
-    text-align: left;
-
-    font-size: 18px;
-
-    line-height: 2;
-
-    color: rgba(255,255,255,0.92);
-
+    opacity:0;
+    transform:translateY(15px);
+    transition:all 1s ease;
 }
 
-
-.letter-cursor {
-
-    display: inline-block;
-
-    margin-left: 3px;
-
-    font-weight: 300;
-
-    animation: cursorBlink 0.8s infinite;
-
-}
-
-
-.letter-signature {
-
-    margin-top: 35px;
-
-    font-family: 'Great Vibes', cursive;
-
-    font-size: 30px;
-
-    line-height: 1.5;
-
-    opacity: 0;
-
-    transition: opacity 1.5s ease;
-
-}
-
-
-.letter-signature.show {
-
-    opacity: 1;
-
-}
-
-
-/* HEART ANIMATION */
-
-@keyframes letterHeartBeat {
-
-    0%, 100% {
-
-        transform: scale(1);
-
-    }
-
-    50% {
-
-        transform: scale(1.18);
-
-    }
-
-}
-
-
-/* TYPEWRITER CURSOR */
-
-@keyframes cursorBlink {
-
-    0%, 50% {
-
-        opacity: 1;
-
-    }
-
-    51%, 100% {
-
-        opacity: 0;
-
-    }
-
+.letter-signature.show{
+    opacity:1;
+    transform:translateY(0);
 }
 
 
 /* MOBILE */
 
-@media (max-width: 600px) {
+@media(max-width:600px){
 
-    .love-letter-section {
-
-        padding: 70px 15px;
-
+    .love-letter-section{
+        padding:70px 15px;
     }
 
-
-    .love-letter-container {
-
-        padding: 45px 25px;
-
-        border-radius: 25px;
-
+    .love-letter-card{
+        padding:40px 25px;
+        border-radius:24px;
     }
 
-
-    .letter-heart {
-
-        font-size: 45px;
-
+    .love-letter-card h2{
+        font-size:42px;
     }
 
-
-    .love-letter-container h2 {
-
-        font-size: 45px;
-
+    .love-letter-text{
+        font-size:15px;
+        line-height:1.9;
     }
 
-
-    .letter-subtitle {
-
-        font-size: 13px;
-
-    }
-
-
-    .love-letter {
-
-        font-size: 15px;
-
-        line-height: 1.9;
-
-    }
-
-
-    .letter-signature {
-
-        font-size: 26px;
-
+    .letter-signature{
+        font-size:28px;
     }
 
 }
